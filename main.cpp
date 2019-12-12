@@ -16,7 +16,7 @@ using namespace std;
 
 
 
-// Choice3
+// Choice3 Choice2
 void addEdge(vector<int> adj[], int u, int v)
 {
     adj[u].push_back(v);
@@ -60,52 +60,53 @@ struct Edge {
 
 class Graph
 {
-    // Function to make Adjacency List
-    Node* getAdjListNode(int value, int weight, Node* head)
-    {
-        Node* newNode = new Node;
-        newNode->val = value;
-        newNode->cost = weight;
-        newNode->next = head;
+ // Function to make Adjacency List
+ Node* getAdjListNode(int value, int weight, Node* head)
+  {
+    Node* newNode = new Node;
+    newNode->val = value;
+    newNode->cost = weight;
+    newNode->next = head;
 
-        return newNode;
-    }
+   return newNode;    
+  }
 
-    int N;  //nodes in the graph
+  int N;  //nodes in the graph
 
 public:
-    Node **head;
+Node **head;
 
-    Graph(Edge edges[], int n, int N)
-    {
-        head = new Node*[N]();
-        this->N = N;
+ Graph(Edge edges[], int n, int N)
+ {
+   head = new Node*[N]();
+   this->N = N;
 
-        for (int i = 0; i < N; i++)
-            head[i] = nullptr;
+   for (int i = 0; i < N; i++)
+   head[i] = nullptr;
 
        
-        for (unsigned i = 0; i < n; i++)
-        {
-            int src = edges[i].src;
-            int dest = edges[i].dest;
-            int weight = edges[i].weight;
-            Node* newNode = getAdjListNode(dest, weight, head[src]);
+   for (unsigned i = 0; i < n; i++)
+   {
+   int src = edges[i].src;
+   int dest = edges[i].dest;
+   int weight = edges[i].weight;
+   Node* newNode = getAdjListNode(dest, weight, head[src]);
 
-            head[src] = newNode;
+   head[src] = newNode;
             
-            // Makes the graph undirected
-            newNode = getAdjListNode(src, weight, head[dest]);
-            head[dest] = newNode;
+   // Makes the graph undirected
+   newNode = getAdjListNode(src, weight, head[dest]);
+   head[dest] = newNode;
             
-        }
-    }
-    Graph() {
-        for (int i = 0; i < N; i++)
-            delete[] head[i];
+   }
+ }
+ Graph() 
+ {
+   for (int i = 0; i < N; i++)
+     delete[] head[i];
 
-        delete[] head;
-    }
+     delete[] head;
+ }
 };
 
 // Choice2
@@ -122,13 +123,13 @@ void printList(Node* ptr)
 // Choice4
 void printList(Node* ptr, int i)
 {
-    while (ptr != nullptr)
-    {
-        cout << "(" << i << ", " << ptr->val
-            << ", " << ptr->cost << " Miles) ";
+ while (ptr != nullptr)
+ {
+   cout << "(" << i << ", " << ptr->val
+        << ", " << ptr->cost << " Miles) ";
 
-        ptr = ptr->next;
-    }
+  ptr = ptr->next;
+ }
     cout << endl;
 }
 
